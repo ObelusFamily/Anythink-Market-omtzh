@@ -10,6 +10,7 @@ var ItemSchema = new mongoose.Schema(
     description: String,
     image: {
       type: String,
+      // placeholder image if no image is provided
       default: "/placeholder.png",
     },
     favoritesCount: { type: Number, default: 0 },
