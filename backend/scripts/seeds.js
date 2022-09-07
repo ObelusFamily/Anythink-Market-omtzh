@@ -7,7 +7,7 @@ const Item = mongoose.model("Item");
 const User = mongoose.model("User");
 
 mongoose
-  .connect(`${process.env.MONGODB_URI}`)
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log("Connected to Mongo in seed script"))
   .catch((err) => console.error(err));
 
