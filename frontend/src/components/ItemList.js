@@ -13,11 +13,7 @@ const ItemList = (props) => {
   }
 
   if (props.items?.length === 0 && props.title?.length > 2) {
-    return (
-      <div id="empty">
-          No items found for {props.title}
-      </div>
-    );
+    return <div id="empty">No items found for {props.title}</div>;
   }
 
   if (props.items.length === 0) {
