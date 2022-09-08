@@ -70,7 +70,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const MainView = (props) => {
-  if (props.items && props.title.length > 2 && props.items.length === 0) {
+  if (props.items && props.title.length > 0 && props.items.length === 0) {
     return (
       <div id="empty">
         <i class="bi bi-emoji-frown"></i>
