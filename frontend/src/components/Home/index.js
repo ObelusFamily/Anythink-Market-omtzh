@@ -37,10 +37,11 @@ function Home(props) {
 
     if (props.title.length === 0) {
       // load all items
+      console.log("loading all items");
       onLoad(
         tab,
         itemsPromise,
-        Promise.all([agent.Tags.getAll(), itemsPromise()])
+        Promise.all([agent.Tags.getAll(), itemsPromise('', 0)])
       );
     } else {
       // search db for item
