@@ -5,7 +5,7 @@ import { CHANGE_TITLE } from "../../constants/actionTypes";
 
 const mapStateToProps = (state) => ({
   ...state.home,
-  title: state.itemList.title,
+  ...state.itemList,
   appName: state.common.appName,
   token: state.common.token,
 });
@@ -15,6 +15,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const Banner = (props) => {
+  const notFound =
+  props.title && props.title?.length > 2 && props.items?.length === 0;
+
   return (
     <div className="banner text-white">
       <div className="container p-4 text-center">
@@ -25,7 +28,7 @@ const Banner = (props) => {
             <input
               id="search-box"
               placeholder="What is it that you truly desire?"
-              value={props.title}
+              value={notFound ? '' : props.title}
               onChange={(e) => props.onChangeTitle(e.target.value)}
             />
             <i className="bi bi-search" />
