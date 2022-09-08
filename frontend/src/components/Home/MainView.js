@@ -71,7 +71,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 const MainView = (props) => {
   if (props.items && props.title.length > 2 && props.items.length === 0) {
-    props.setFound(false);
     return (
       <div id="empty">
         <i class="bi bi-emoji-frown"></i>
@@ -82,7 +81,6 @@ const MainView = (props) => {
     );
   }
 
-  props.setFound(true);
   return (
     <div>
       <div className="feed-toggle">
@@ -94,7 +92,7 @@ const MainView = (props) => {
           />
 
           <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} />
-
+          
           <TagFilterTab tag={props.tag} />
         </ul>
       </div>

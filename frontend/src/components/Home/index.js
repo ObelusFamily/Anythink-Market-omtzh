@@ -12,8 +12,10 @@ import {
 
 const Promise = global.Promise;
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => 
+   ({
   ...state.home,
+  title: state.title || 'hellol',
   appName: state.common.appName,
   token: state.common.token,
 });
@@ -28,19 +30,16 @@ const mapDispatchToProps = (dispatch) => ({
 
 function Home(props) {
   let { token, tags, onLoad, onUnload, onClickTag } = props;
-  const [title, setTitle] = React.useState("");
-  const [found, setFound] = React.useState(false);
-
   React.useEffect(() => {
     const tab = "all";
     const itemsPromise = agent.Items.all;
 
-    if (title.length > 2) {
+    if (props.title.length > 2) {
       // search for items only if title length is at least 3 characters
       onLoad(
         tab,
         itemsPromise,
-        Promise.all([agent.Tags.getAll(), itemsPromise(title)])
+        Promise.all([agent.Tags.getAll(), itemsPromise(props.title)])
       );
     } else {
       // otherwise load all items
@@ -54,15 +53,15 @@ function Home(props) {
     return () => {
       onUnload();
     };
-  }, [onLoad, onUnload, title, token]);
+  }, [onLoad, onUnload, props.title, token]);
 
   return (
     <div className="home-page">
-      <Banner title={title} setTitle={setTitle} found={found}/>
+      <Banner />
 
       <div className="container page">
         <Tags tags={tags} onClickTag={onClickTag} />
-        <MainView title={title} setFound={setFound}/>
+        <MainView />
       </div>
     </div>
   );

@@ -1,22 +1,15 @@
 import React from "react";
 import logo from "../../imgs/logo.png";
+import SearchBox from './SearchBox'
 
-const Banner = ({ title, setTitle, found }) => {
+const Banner = () => {
   return (
     <div className="banner text-white">
       <div className="container p-4 text-center">
         <img src={logo} alt="banner" />
         <div>
           <span id="get-part">A place to get</span>
-          <span className="search-container">
-            <input
-              id="search-box"
-              placeholder="What is it that you truly desire?"
-              value={!found && title.length > 2 ? '' : title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <i className="bi bi-search" />
-          </span>
+          <SearchBox />
           <span> the cool stuff.</span>
         </div>
       </div>
