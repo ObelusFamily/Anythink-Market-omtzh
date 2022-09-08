@@ -35,19 +35,19 @@ function Home(props) {
     const tab = "all";
     const itemsPromise = agent.Items.all;
 
-    if (props.title.length > 2) {
-      // search for items only if title length is at least 3 characters
-      onLoad(
-        tab,
-        itemsPromise,
-        Promise.all([agent.Tags.getAll(), itemsPromise(props.title, 0)])
-      );
-    } else {
-      // otherwise load all items
+    if (props.title.length === 0) {
+      // load all items
       onLoad(
         tab,
         itemsPromise,
         Promise.all([agent.Tags.getAll(), itemsPromise()])
+      );
+    } else {
+      // search db for item
+      onLoad(
+        tab,
+        itemsPromise,
+        Promise.all([agent.Tags.getAll(), itemsPromise(props.title, 0)])
       );
     }
 

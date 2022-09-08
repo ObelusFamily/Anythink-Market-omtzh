@@ -11,7 +11,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 function SearchBox(props) {
   const notFound =
-    props.title && props.title.length > 3 && props.items.length === 0;
+    props.title && props.title.length > 1 && props.items.length === 0;
   return (
     <span className="search-container">
       <input
