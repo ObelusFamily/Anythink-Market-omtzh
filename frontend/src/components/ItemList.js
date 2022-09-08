@@ -15,10 +15,7 @@ const ItemList = (props) => {
   if (props.items?.length === 0 && props.title?.length > 2) {
     return (
       <div id="empty">
-        <i class="bi bi-emoji-frown" />
-        <div>
-          No items found for <strong>"{props.title}".</strong>
-        </div>
+          No items found for {props.title}
       </div>
     );
   }
