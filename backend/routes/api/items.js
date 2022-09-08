@@ -53,6 +53,12 @@ router.get("/", auth.optional, function (req, res, next) {
     query.tagList = { $in: [req.query.tag] };
   }
 
+  if (typeof req.query.title !== "undefined") {
+    // $regex is a MongoDB operator that allows you to search for a string that matches a regular expression
+    // $options: 'i' makes the search case insensitive
+    query.title = { $regex: req.query.title, $options: "i" };
+  }
+
   Promise.all([
     req.query.seller ? User.findOne({ username: req.query.seller }) : null,
     req.query.favorited
