@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../imgs/logo.png";
-import SearchBox from './SearchBox'
+import SearchBox from "./SearchBox";
 
 const Banner = () => {
   return (

@@ -12,13 +12,15 @@ import {
 
 const Promise = global.Promise;
 
-const mapStateToProps = (state) => 
-   ({
-  ...state.home,
-  title: state.title || 'hellol',
-  appName: state.common.appName,
-  token: state.common.token,
-});
+const mapStateToProps = (state) => {
+  console.log("state is ", state);
+  return {
+    ...state.home,
+    title: state.itemList.title,
+    appName: state.common.appName,
+    token: state.common.token,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onClickTag: (tag, pager, payload) =>
@@ -29,12 +31,14 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 function Home(props) {
+  console.log("props is ", props);
   let { token, tags, onLoad, onUnload, onClickTag } = props;
   React.useEffect(() => {
     const tab = "all";
     const itemsPromise = agent.Items.all;
 
     if (props.title.length > 2) {
+      console.log("title is", props.title);
       // search for items only if title length is at least 3 characters
       onLoad(
         tab,

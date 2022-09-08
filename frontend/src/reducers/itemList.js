@@ -10,16 +10,16 @@ import {
   PROFILE_PAGE_UNLOADED,
   PROFILE_FAVORITES_PAGE_LOADED,
   PROFILE_FAVORITES_PAGE_UNLOADED,
-  TITLE_CHANGE
+  TITLE_CHANGE,
 } from "../constants/actionTypes";
 
-const reducer = (state = {title: ''}, action) => {
+const reducer = (state = { title: "" }, action) => {
   switch (action.type) {
     case TITLE_CHANGE:
       return {
         ...state,
-        title: action.payload
-      }
+        title: action.payload,
+      };
     case ITEM_FAVORITED:
     case ITEM_UNFAVORITED:
       return {
@@ -63,7 +63,9 @@ const reducer = (state = {title: ''}, action) => {
         tab: action.tab,
       };
     case HOME_PAGE_UNLOADED:
-      return {};
+      return {
+        ...state,
+      };
     case CHANGE_TAB:
       return {
         ...state,
@@ -87,6 +89,7 @@ const reducer = (state = {title: ''}, action) => {
     case PROFILE_FAVORITES_PAGE_UNLOADED:
       return {};
     default:
+      console.log("im in default", state);
       return state;
   }
 };
