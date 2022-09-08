@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const Banner = (props) => {
   const notFound =
-  props.title && props.title?.length > 2 && props.items?.length === 0;
+    props.title && props.title?.length > 2 && props.items?.length === 0;
 
   return (
     <div className="banner text-white">
@@ -28,7 +28,7 @@ const Banner = (props) => {
             <input
               id="search-box"
               placeholder="What is it that you truly desire?"
-              value={notFound ? '' : props.title}
+              value={notFound ? "" : props.title}
               onChange={(e) => props.onChangeTitle(e.target.value)}
             />
             <i className="bi bi-search" />
