@@ -89,7 +89,6 @@ const reducer = (state = { title: "" }, action) => {
     case PROFILE_FAVORITES_PAGE_UNLOADED:
       return {};
     default:
-      console.log("im in default", state);
       return state;
   }
 };
