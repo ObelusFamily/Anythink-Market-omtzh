@@ -14,6 +14,7 @@ const Promise = global.Promise;
 
 const mapStateToProps = (state) => ({
   ...state.home,
+  ...state.itemList,
   appName: state.common.appName,
   token: state.common.token,
 });
@@ -27,14 +28,13 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 function Home(props) {
-  let { token, tags, onLoad, onUnload, onClickTag } = props;
-  const [title, setTitle] = React.useState("");
+  let { token, tags, onLoad, onUnload, onClickTag, title, items } = props;
 
   React.useEffect(() => {
     const tab = "all";
     const itemsPromise = agent.Items.all;
 
-    if (title.length > 2) {
+    if (title?.length > 2) {
       // search for items only if title length is at least 3 characters
       onLoad(
         tab,
@@ -57,11 +57,19 @@ function Home(props) {
 
   return (
     <div className="home-page">
-      <Banner title={title} setTitle={setTitle} />
-
+      <Banner />
       <div className="container page">
         <Tags tags={tags} onClickTag={onClickTag} />
-        <MainView />
+        {
+          (title?.length > 2 && items?.length === 0) ? (
+            <div id="empty">
+              Item {title} not found. Try searching for something else.
+              </div>
+          ) : (
+            <MainView />
+          )
+        }
+
       </div>
     </div>
   );

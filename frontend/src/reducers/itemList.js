@@ -10,10 +10,16 @@ import {
   PROFILE_PAGE_UNLOADED,
   PROFILE_FAVORITES_PAGE_LOADED,
   PROFILE_FAVORITES_PAGE_UNLOADED,
+  CHANGE_TITLE
 } from "../constants/actionTypes";
 
-const reducer = (state = {}, action) => {
+const reducer = (state = { title: "" }, action) => {
   switch (action.type) {
+    case CHANGE_TITLE:
+      return {
+        ...state,
+        title: action.payload,
+      };
     case ITEM_FAVORITED:
     case ITEM_UNFAVORITED:
       return {
@@ -56,8 +62,10 @@ const reducer = (state = {}, action) => {
         currentPage: 0,
         tab: action.tab,
       };
-    case HOME_PAGE_UNLOADED:
-      return {};
+      case HOME_PAGE_UNLOADED:
+        return {
+          ...state,
+        };
     case CHANGE_TAB:
       return {
         ...state,

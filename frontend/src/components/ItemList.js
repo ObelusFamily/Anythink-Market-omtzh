@@ -1,6 +1,12 @@
 import ItemPreview from "./ItemPreview";
 import ListPagination from "./ListPagination";
 import React from "react";
+import { connect } from "react-redux";
+
+const mapStateToProps = (state) => ({
+  ...state.itemList,
+});
+
 
 const ItemList = (props) => {
   if (!props.items) {
@@ -32,4 +38,4 @@ const ItemList = (props) => {
   );
 };
 
-export default ItemList;
+export default connect(mapStateToProps)(ItemList);

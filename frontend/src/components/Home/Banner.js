@@ -1,7 +1,21 @@
 import React from "react";
 import logo from "../../imgs/logo.png";
+import { connect } from "react-redux";
+import {CHANGE_TITLE} from '../../constants/actionTypes'
 
-const Banner = ({ title, setTitle }) => {
+const mapStateToProps = (state) => ({
+  ...state.home,
+  title: state.itemList.title,
+  appName: state.common.appName,
+  token: state.common.token,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onChangeTitle: (title) => dispatch({ type: CHANGE_TITLE, payload: title}),
+});
+
+
+const Banner = (props) => {
   return (
     <div className="banner text-white">
       <div className="container p-4 text-center">
@@ -12,8 +26,8 @@ const Banner = ({ title, setTitle }) => {
             <input
               id="search-box"
               placeholder="What is it that you truly desire?"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              value={props.title}
+              onChange={(e) => props.onChangeTitle(e.target.value)}
             />
             <i className="bi bi-search" />
           </span>
@@ -24,4 +38,4 @@ const Banner = ({ title, setTitle }) => {
   );
 };
 
-export default Banner;
+export default connect(mapStateToProps, mapDispatchToProps)(Banner);
