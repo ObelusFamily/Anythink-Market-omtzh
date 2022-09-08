@@ -73,7 +73,7 @@ const MainView = (props) => {
   if (
     props.items &&
     props.title &&
-    props.title.length > 2 &&
+    props.title.length > 0 &&
     props.items.length === 0
   ) {
     return (
