@@ -15,7 +15,7 @@ const ItemList = (props) => {
   if (
     props.items !== undefined &&
     props.items.length === 0 &&
-    props.title.length > 1
+    props.title.length > 2
   ) {
     return (
       <div id="empty">
