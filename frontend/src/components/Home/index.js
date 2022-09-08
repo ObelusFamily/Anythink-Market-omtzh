@@ -29,6 +29,7 @@ const mapDispatchToProps = (dispatch) => ({
 function Home(props) {
   let { token, tags, onLoad, onUnload, onClickTag } = props;
   const [title, setTitle] = React.useState("");
+  const [found, setFound] = React.useState(false);
 
   React.useEffect(() => {
     const tab = "all";
@@ -57,11 +58,11 @@ function Home(props) {
 
   return (
     <div className="home-page">
-      <Banner title={title} setTitle={setTitle} />
+      <Banner title={title} setTitle={setTitle} found={found}/>
 
       <div className="container page">
         <Tags tags={tags} onClickTag={onClickTag} />
-        <MainView title={title} />
+        <MainView title={title} setFound={setFound}/>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../imgs/logo.png";
 
-const Banner = ({ title, setTitle }) => {
+const Banner = ({ title, setTitle, found }) => {
   return (
     <div className="banner text-white">
       <div className="container p-4 text-center">
@@ -12,7 +12,7 @@ const Banner = ({ title, setTitle }) => {
             <input
               id="search-box"
               placeholder="What is it that you truly desire?"
-              value={title}
+              value={!found && title.length > 2 ? '' : title}
               onChange={(e) => setTitle(e.target.value)}
             />
             <i className="bi bi-search" />
