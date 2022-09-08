@@ -13,14 +13,14 @@ function SearchBox(props) {
   const notFound =
     props.title && props.title.length > 1 && props.items.length === 0;
   return (
-      <input
-        id="search-box"
-        placeholder="What is it that you truly desire?"
-        value={notFound ? "" : props.title}
-        onChange={(e) => {
-          props.onChangeItem(e.target.value);
-        }}
-      />
+    <input
+      id="search-box"
+      placeholder="What is it that you truly desire?"
+      value={notFound ? "" : props.title}
+      onChange={(e) => {
+        props.onChangeItem(e.target.value);
+      }}
+    />
   );
 }
 
