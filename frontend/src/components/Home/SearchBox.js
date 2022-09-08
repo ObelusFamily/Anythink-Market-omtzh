@@ -13,7 +13,6 @@ function SearchBox(props) {
   const notFound =
     props.title && props.title.length > 1 && props.items.length === 0;
   return (
-    <span className="search-container">
       <input
         id="search-box"
         placeholder="What is it that you truly desire?"
@@ -22,8 +21,6 @@ function SearchBox(props) {
           props.onChangeItem(e.target.value);
         }}
       />
-      <i className="bi bi-search" />
-    </span>
   );
 }
 
