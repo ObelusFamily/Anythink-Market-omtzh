@@ -41,7 +41,7 @@ function Home(props) {
       onLoad(
         tab,
         itemsPromise,
-        Promise.all([agent.Tags.getAll(), itemsPromise('', 0)])
+        Promise.all([agent.Tags.getAll(), itemsPromise("", 0)])
       );
     } else {
       // search db for item
