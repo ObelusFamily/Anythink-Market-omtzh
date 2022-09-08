@@ -63,12 +63,11 @@ function Home(props) {
 
       <div className="container page">
         <Tags tags={tags} onClickTag={onClickTag} />
+
         {props.items !== undefined &&
         props.items.length === 0 &&
         props.title.length > 2 ? (
-          <div id="empty">
-            <h3>No items found for {props.title}</h3>
-          </div>
+          <div id="empty">No items found for {props.title}</div>
         ) : null}
 
         <MainView />
