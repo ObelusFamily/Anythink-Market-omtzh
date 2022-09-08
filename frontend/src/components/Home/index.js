@@ -61,7 +61,7 @@ function Home(props) {
 
       <div className="container page">
         <Tags tags={tags} onClickTag={onClickTag} />
-        <MainView />
+        <MainView title={title} />
       </div>
     </div>
   );

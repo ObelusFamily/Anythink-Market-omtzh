@@ -70,6 +70,17 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const MainView = (props) => {
+  if (props.items && props.title && props.items.length === 0) {
+    return (
+      <div id="empty">
+        <i class="bi bi-emoji-frown"></i>
+        <div>
+          No items found for <span className="bold">"{props.title}".</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="feed-toggle">

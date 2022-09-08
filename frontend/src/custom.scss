@@ -81,3 +81,22 @@ body {
   top: 0;
   bottom: 0;
 }
+
+#empty {
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: $primary;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.bi-emoji-frown {
+  font-size: 5rem;
+  color: $secondary;
+}
