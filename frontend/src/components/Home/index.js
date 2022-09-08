@@ -40,7 +40,7 @@ function Home(props) {
       onLoad(
         tab,
         itemsPromise,
-        Promise.all([agent.Tags.getAll(), itemsPromise(props.title)])
+        Promise.all([agent.Tags.getAll(), itemsPromise(props.title, 0)])
       );
     } else {
       // otherwise load all items
