@@ -15,7 +15,7 @@ const Promise = global.Promise;
 const mapStateToProps = (state) => {
   return {
     ...state.home,
-    title: state.itemList.title,
+    ...state.itemList,
     appName: state.common.appName,
     token: state.common.token,
   };
@@ -63,6 +63,14 @@ function Home(props) {
 
       <div className="container page">
         <Tags tags={tags} onClickTag={onClickTag} />
+        {props.items !== undefined &&
+        props.items.length === 0 &&
+        props.title.length > 2 ? (
+          <div id="empty">
+            <h3>No items found for {props.title}</h3>
+          </div>
+        ) : null}
+
         <MainView />
       </div>
     </div>
