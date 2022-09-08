@@ -60,16 +60,13 @@ function Home(props) {
       <Banner />
       <div className="container page">
         <Tags tags={tags} onClickTag={onClickTag} />
-        {
-          (title?.length > 2 && items?.length === 0) ? (
-            <div id="empty">
-              Item {title} not found. Try searching for something else.
-              </div>
-          ) : (
-            <MainView />
-          )
-        }
-
+        {title?.length > 2 && items?.length === 0 ? (
+          <div id="empty">
+            Item {title} not found. Try searching for something else.
+          </div>
+        ) : (
+          <MainView />
+        )}
       </div>
     </div>
   );

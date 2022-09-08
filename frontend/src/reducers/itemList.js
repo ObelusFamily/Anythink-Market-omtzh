@@ -10,7 +10,7 @@ import {
   PROFILE_PAGE_UNLOADED,
   PROFILE_FAVORITES_PAGE_LOADED,
   PROFILE_FAVORITES_PAGE_UNLOADED,
-  CHANGE_TITLE
+  CHANGE_TITLE,
 } from "../constants/actionTypes";
 
 const reducer = (state = { title: "" }, action) => {
@@ -62,10 +62,10 @@ const reducer = (state = { title: "" }, action) => {
         currentPage: 0,
         tab: action.tab,
       };
-      case HOME_PAGE_UNLOADED:
-        return {
-          ...state,
-        };
+    case HOME_PAGE_UNLOADED:
+      return {
+        ...state,
+      };
     case CHANGE_TAB:
       return {
         ...state,

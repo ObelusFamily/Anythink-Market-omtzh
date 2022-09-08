@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../imgs/logo.png";
 import { connect } from "react-redux";
-import {CHANGE_TITLE} from '../../constants/actionTypes'
+import { CHANGE_TITLE } from "../../constants/actionTypes";
 
 const mapStateToProps = (state) => ({
   ...state.home,
@@ -11,9 +11,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onChangeTitle: (title) => dispatch({ type: CHANGE_TITLE, payload: title}),
+  onChangeTitle: (title) => dispatch({ type: CHANGE_TITLE, payload: title }),
 });
-
 
 const Banner = (props) => {
   return (

@@ -7,7 +7,6 @@ const mapStateToProps = (state) => ({
   ...state.itemList,
 });
 
-
 const ItemList = (props) => {
   if (!props.items) {
     return <div className="py-4">Loading...</div>;
