@@ -3,7 +3,6 @@ import ListPagination from "./ListPagination";
 import React from "react";
 
 const ItemList = (props) => {
-  console.log("props is", props);
   if (!props.items) {
     return <div className="py-4">Loading...</div>;
   }

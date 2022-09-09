@@ -7,7 +7,7 @@ const Banner = (props) => {
     e.preventDefault();
     const title = e.target.value;
 
-    if (title.length > 2) {
+    if (title.length > 0) {
       props.onTitleChange(
         title,
         (page) => agent.Items.byName(title, page),
