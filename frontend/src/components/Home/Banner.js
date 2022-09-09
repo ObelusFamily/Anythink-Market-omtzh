@@ -1,29 +1,25 @@
 import React from "react";
 import logo from "../../imgs/logo.png";
 import agent from "../../agent";
-import { connect } from "react-redux";
-import { CHANGE_TITLE } from "../../constants/actionTypes";
-
-const mapStateToProps = (state) => ({
-  ...state.itemList,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onChangeTitle: (title, payload, pager) =>
-    dispatch({ type: CHANGE_TITLE, title, pager, payload }),
-});
 
 const Banner = (props) => {
-  const notFound =
-    props.title && props.title?.length > 2 && props.items?.length === 0;
-
   function handleChange(e) {
+    e.preventDefault();
     const title = e.target.value;
-    props.onChangeTitle(
-      title,
-      agent.Items.byName(title, 0),
-      agent.Items.byName
-    );
+
+    if (title.length > 2) {
+      props.onTitleChange(
+        title,
+        (page) => agent.Items.byName(title, page),
+        agent.Items.byName(title)
+      );
+    } else {
+      props.onTitleChange(
+        "",
+        (page) => agent.Items.all(page),
+        agent.Items.all()
+      );
+    }
   }
 
   return (
@@ -32,15 +28,12 @@ const Banner = (props) => {
         <img src={logo} alt="banner" />
         <div>
           <span id="get-part">A place to get</span>
-          <span className="search-container">
-            <input
-              id="search-box"
-              placeholder="What is it that you truly desire?"
-              value={notFound ? "" : props.title}
-              onChange={handleChange}
-            />
-            <i className="bi bi-search" />
-          </span>
+          <input
+            id="search-box"
+            type="text"
+            placeholder="What is it that you truly desire?"
+            onChange={handleChange}
+          />
           <span> the cool stuff.</span>
         </div>
       </div>
@@ -48,4 +41,4 @@ const Banner = (props) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Banner);
+export default Banner;
