@@ -27,49 +27,34 @@ const mapDispatchToProps = (dispatch) => ({
   onUnload: () => dispatch({ type: HOME_PAGE_UNLOADED }),
 });
 
-function Home(props) {
-  let { token, tags, onLoad, onUnload, onClickTag, title, items } = props;
-
-  React.useEffect(() => {
+class Home extends React.Component {
+  componentWillMount() {
     const tab = "all";
     const itemsPromise = agent.Items.all;
 
-    if (title?.length > 2) {
-      // search for items only if title length is at least 3 characters
-      onLoad(
-        tab,
-        itemsPromise,
-        Promise.all([agent.Tags.getAll(), itemsPromise(title)])
-      );
-    } else {
-      // otherwise load all items
-      onLoad(
-        tab,
-        itemsPromise,
-        Promise.all([agent.Tags.getAll(), itemsPromise()])
-      );
-    }
+    this.props.onLoad(
+      tab,
+      itemsPromise,
+      Promise.all([agent.Tags.getAll(), itemsPromise()])
+    );
+  }
 
-    return () => {
-      onUnload();
-    };
-  }, [onLoad, onUnload, title, token]);
+  componentWillUnmount() {
+    this.props.onUnload();
+  }
 
-  return (
-    <div className="home-page">
-      <Banner />
-      <div className="container page">
-        <Tags tags={tags} onClickTag={onClickTag} />
-        {title?.length > 2 && items?.length === 0 ? (
-          <div id="empty">
-            Item {title} not found. Try searching for something else.
-          </div>
-        ) : (
+  render() {
+    return (
+      <div className="home-page">
+        <Banner />
+
+        <div className="container page">
+          <Tags tags={this.props.tags} onClickTag={this.props.onClickTag} />
           <MainView />
-        )}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

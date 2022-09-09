@@ -1,22 +1,30 @@
 import React from "react";
 import logo from "../../imgs/logo.png";
+import agent from "../../agent";
 import { connect } from "react-redux";
 import { CHANGE_TITLE } from "../../constants/actionTypes";
 
 const mapStateToProps = (state) => ({
-  ...state.home,
   ...state.itemList,
-  appName: state.common.appName,
-  token: state.common.token,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onChangeTitle: (title) => dispatch({ type: CHANGE_TITLE, payload: title }),
+  onChangeTitle: (title, payload, pager) =>
+    dispatch({ type: CHANGE_TITLE, title, pager, payload }),
 });
 
 const Banner = (props) => {
   const notFound =
     props.title && props.title?.length > 2 && props.items?.length === 0;
+
+  function handleChange(e) {
+    const title = e.target.value;
+    props.onChangeTitle(
+      title,
+      agent.Items.byName(title, 0),
+      agent.Items.byName
+    );
+  }
 
   return (
     <div className="banner text-white">
@@ -29,7 +37,7 @@ const Banner = (props) => {
               id="search-box"
               placeholder="What is it that you truly desire?"
               value={notFound ? "" : props.title}
-              onChange={(e) => props.onChangeTitle(e.target.value)}
+              onChange={handleChange}
             />
             <i className="bi bi-search" />
           </span>

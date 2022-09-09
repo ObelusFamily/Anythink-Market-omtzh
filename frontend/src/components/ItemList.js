@@ -1,11 +1,6 @@
 import ItemPreview from "./ItemPreview";
 import ListPagination from "./ListPagination";
 import React from "react";
-import { connect } from "react-redux";
-
-const mapStateToProps = (state) => ({
-  ...state.itemList,
-});
 
 const ItemList = (props) => {
   if (!props.items) {
@@ -13,7 +8,19 @@ const ItemList = (props) => {
   }
 
   if (props.items.length === 0) {
-    return <div className="py-4 no-items">No items are here... yet.</div>;
+    if (props.title && props.title.length > 2) {
+      return (
+        <div id="empty" className="py-4 no-items">
+          No items found for "{props.title}".
+        </div>
+      );
+    } else {
+      return (
+        <div id="empty" className="py-4 no-items">
+          No items are here... yet.
+        </div>
+      );
+    }
   }
 
   return (
@@ -37,4 +44,4 @@ const ItemList = (props) => {
   );
 };
 
-export default connect(mapStateToProps)(ItemList);
+export default ItemList;

@@ -18,7 +18,13 @@ const reducer = (state = { title: "" }, action) => {
     case CHANGE_TITLE:
       return {
         ...state,
-        title: action.payload,
+        title: action.title,
+        pager: action.pager,
+        items: action.payload.items,
+        itemsCount: action.payload.itemsCount,
+        tab: null,
+        tag: action.tag,
+        currentPage: 0,
       };
     case ITEM_FAVORITED:
     case ITEM_UNFAVORITED:
@@ -63,9 +69,7 @@ const reducer = (state = { title: "" }, action) => {
         tab: action.tab,
       };
     case HOME_PAGE_UNLOADED:
-      return {
-        ...state,
-      };
+      return {};
     case CHANGE_TAB:
       return {
         ...state,
