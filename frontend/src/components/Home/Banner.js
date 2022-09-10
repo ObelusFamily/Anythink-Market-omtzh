@@ -3,9 +3,8 @@ import logo from "../../imgs/logo.png";
 import agent from "../../agent";
 
 const Banner = (props) => {
-  const [pass, setPass] = React.useState(false);
+  const [show, setShow] = React.useState(false);
   function handleChange(e) {
-    setPass(true);
     e.preventDefault();
     const title = e.target.value;
 
@@ -29,14 +28,17 @@ const Banner = (props) => {
       <div className="container p-4 text-center">
         <img src={logo} alt="banner" />
         <div>
-          <span id="get-part">A place to get</span>
-          <input
-            id="search-box"
-            type="text"
-            placeholder="What is it that you truly desire?"
-            onChange={handleChange}
-          />
-          {pass ? <div id="empty">Hello</div> : null}
+          <span id="get-part">
+            A place to <span onClick={() => setShow((show) => !show)}>get</span>
+          </span>
+          {show ? (
+            <input
+              id="search-box"
+              type="text"
+              placeholder="What is it that you truly desire?"
+              onChange={handleChange}
+            />
+          ) : null}
           <span> the cool stuff.</span>
         </div>
       </div>
