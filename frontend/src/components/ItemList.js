@@ -4,7 +4,11 @@ import React from "react";
 
 const ItemList = (props) => {
   if (!props.items) {
-    return <div className="py-4">Loading...</div>;
+    return (
+      <div className="py-4" id="empty">
+        Loading...
+      </div>
+    );
   }
 
   if (props.items?.length === 0) {
