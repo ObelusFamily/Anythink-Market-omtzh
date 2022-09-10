@@ -14,8 +14,9 @@ const ItemList = (props) => {
           No items found for "<strong>{props.title}</strong>"
         </div>
       );
+    } else if (!props.title || props.title === "") {
+      return <div className="py-4 no-items">No items are here... yet.</div>;
     }
-    return <div className="py-4 no-items">No items are here... yet.</div>;
   }
 
   return (
