@@ -3,7 +3,9 @@ import logo from "../../imgs/logo.png";
 import agent from "../../agent";
 
 const Banner = (props) => {
+  const [pass, setPass] = React.useState(false);
   function handleChange(e) {
+    setPass(true);
     e.preventDefault();
     const title = e.target.value;
 
@@ -34,6 +36,7 @@ const Banner = (props) => {
             placeholder="What is it that you truly desire?"
             onChange={handleChange}
           />
+          {pass ? <div id="empty">Hello</div> : null}
           <span> the cool stuff.</span>
         </div>
       </div>
