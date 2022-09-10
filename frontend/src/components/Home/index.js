@@ -8,12 +8,14 @@ import {
   HOME_PAGE_LOADED,
   HOME_PAGE_UNLOADED,
   APPLY_TAG_FILTER,
+  CHANGE_TITLE,
 } from "../../constants/actionTypes";
 
 const Promise = global.Promise;
 
 const mapStateToProps = (state) => ({
   ...state.home,
+  ...state.itemList,
   appName: state.common.appName,
   token: state.common.token,
 });
@@ -24,47 +26,38 @@ const mapDispatchToProps = (dispatch) => ({
   onLoad: (tab, pager, payload) =>
     dispatch({ type: HOME_PAGE_LOADED, tab, pager, payload }),
   onUnload: () => dispatch({ type: HOME_PAGE_UNLOADED }),
+  onTitleChange: (title, pager, payload) =>
+    dispatch({ type: CHANGE_TITLE, title, pager, payload }),
 });
 
-function Home(props) {
-  let { token, tags, onLoad, onUnload, onClickTag } = props;
-  const [title, setTitle] = React.useState("");
-
-  React.useEffect(() => {
+class Home extends React.Component {
+  componentWillMount() {
     const tab = "all";
     const itemsPromise = agent.Items.all;
 
-    if (title.length > 2) {
-      // search for items only if title length is at least 3 characters
-      onLoad(
-        tab,
-        itemsPromise,
-        Promise.all([agent.Tags.getAll(), itemsPromise(title)])
-      );
-    } else {
-      // otherwise load all items
-      onLoad(
-        tab,
-        itemsPromise,
-        Promise.all([agent.Tags.getAll(), itemsPromise()])
-      );
-    }
+    this.props.onLoad(
+      tab,
+      itemsPromise,
+      Promise.all([agent.Tags.getAll(), itemsPromise()])
+    );
+  }
 
-    return () => {
-      onUnload();
-    };
-  }, [onLoad, onUnload, title, token]);
+  componentWillUnmount() {
+    this.props.onUnload();
+  }
 
-  return (
-    <div className="home-page">
-      <Banner title={title} setTitle={setTitle} />
+  render() {
+    return (
+      <div className="home-page">
+        <Banner onTitleChange={this.props.onTitleChange} />
 
-      <div className="container page">
-        <Tags tags={tags} onClickTag={onClickTag} />
-        <MainView />
+        <div className="container page">
+          <Tags tags={this.props.tags} onClickTag={this.props.onClickTag} />
+          <MainView />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
