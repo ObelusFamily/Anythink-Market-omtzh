@@ -28,8 +28,8 @@ const Banner = (props) => {
       <div className="container p-4 text-center">
         <img src={logo} alt="banner" />
         <div>
-          <span id="get-part">
-            A place to <span onClick={() => setShow((show) => !show)}>get</span>
+          <span>
+            A place to <span id="get-part" onClick={() => setShow((show) => !show)}>get</span>
           </span>
           {show ? (
             <input
