@@ -5,7 +5,7 @@ import agent from "../../agent";
 const Banner = (props) => {
   const [blah, setBlah] = React.useState(false);
   function handleChange(e) {
-    setBlah(true)
+    setBlah(true);
     e.preventDefault();
     const title = e.target.value;
 
@@ -37,11 +37,7 @@ const Banner = (props) => {
             onChange={handleChange}
           />
           <span> the cool stuff.</span>
-          {
-            blah ? (
-              <div id="empty">blah</div>
-            ) : null
-          }
+          {blah ? <div id="empty">blah</div> : null}
         </div>
       </div>
     </div>
