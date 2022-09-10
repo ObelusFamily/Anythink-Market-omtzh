@@ -59,3 +59,12 @@ body {
 .user-info {
   min-width: 800px;
 }
+
+// 768px is the usually the breakpoint for medium sized screens
+@media (max-width: 768px) {
+  .profile-page {
+    .user-info {
+      min-width: 0px;
+    }
+  }
+}
