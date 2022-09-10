@@ -4,6 +4,10 @@ import React from "react";
 
 const ItemList = (props) => {
   if (!props.items) {
+    return <div className="py-4">Loading...</div>;
+  }
+
+  if (props.items.length === 0) {
     if (props.title) {
       return (
         <div id="empty" className="py-4 no-items">
@@ -11,27 +15,12 @@ const ItemList = (props) => {
         </div>
       );
     }
-    return <div className="py-4">Loading...</div>;
-  }
-
-  if (props.items.length === 0) {
-    if (props.title?.length) {
-      return (
-        <div id="empty" className="py-4 no-items">
-          No items found for "<strong>{props.title}</strong>"
-        </div>
-      );
-    }
-    return (
-      <div className="py-4 no-items" id="empty">
-        No items are here... yet.
-      </div>
-    );
+    return <div className="py-4 no-items">No items are here... yet.</div>;
   }
 
   return (
     <div className="container py-2">
-      <div className="row" id="empty">
+      <div className="row">
         {props.items.map((item) => {
           return (
             <div className="col-sm-4 pb-2" key={item.slug}>
