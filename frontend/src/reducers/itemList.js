@@ -81,20 +81,31 @@ const reducer = (state = {}, action) => {
     case PROFILE_PAGE_UNLOADED:
     case PROFILE_FAVORITES_PAGE_UNLOADED:
       return {};
-    case CHANGE_TITLE:
+    case CHANGE_TITLE: {
+      const filteredItems = filterItems(action.payload.items, action.title);
       return {
         ...state,
         title: action.title,
         pager: action.pager,
-        items: action.payload.items,
-        itemsCount: action.payload.itemsCount,
+        items: filteredItems,
+        itemsCount: filteredItems.length,
         tab: null,
         tag: action.tag,
         currentPage: 0,
       };
+    }
     default:
       return state;
   }
 };
 
 export default reducer;
+
+function filterItems(items, title) {
+  console.log("items is", items);
+  console.log("title is", title);
+  if (!title) return [];
+  return items.filter((item) => {
+    return item.title.toLowerCase().includes(title.toLowerCase());
+  });
+}
