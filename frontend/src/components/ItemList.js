@@ -19,7 +19,7 @@ const ItemList = (props) => {
         </div>
       );
     } else if (!props.title || props.title === "") {
-      return <div className="py-4 no-items">No items are here... yet.</div>;
+      return <div className="py-4 no-items" id="empty">No items are here... yet.</div>;
     }
   }
 
