@@ -17,7 +17,7 @@ const CommentInput = (props) => {
   const createComment = (e) => {
     e.preventDefault();
     agent.Comments.create(props.slug, {
-      body: body,
+      body,
     }).then((payload) => {
       props.onSubmit(payload);
     });
@@ -25,7 +25,7 @@ const CommentInput = (props) => {
   };
 
   return (
-    <form className="card comment-form" onSubmit={createComment}>
+    <form className="card comment-form m-2" onSubmit={createComment}>
       <div className="card-block">
         <textarea
           className="form-control"
@@ -33,7 +33,7 @@ const CommentInput = (props) => {
           value={body}
           onChange={handleChange}
           rows="3"
-        ></textarea>
+        />
       </div>
       <div className="card-footer">
         <img
